@@ -11,7 +11,7 @@ function App() {
   const [data, setData] = useState([]);
   const [months, setMonths] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState("Select All");
-  const [selectedKPI, setSelectedKPI] = useState("Value"); // Default KPI
+  const [selectedKPI, setSelectedKPI] = useState("Gas"); // Default KPI
   const [kpiValue, setKpiValue] = useState(0);
   const [mode] = useState("Historical");
 
@@ -75,10 +75,10 @@ function App() {
           : data.filter((row) => row.month === selectedMonth);
       const totalHistorical =
         filteredData.reduce((sum, row) => {
+          console.log('selectedKPI', selectedKPI);
           const value = row[selectedKPI.toLowerCase()];
           return sum + (value !== "" && !isNaN(value) ? parseFloat(value) : 0);
         }, 0);
-
       setKpiValue(totalHistorical || 0);
     }
   };
